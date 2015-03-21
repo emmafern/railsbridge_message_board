@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @user_signed_in = user_signed_in?
   end
 end
