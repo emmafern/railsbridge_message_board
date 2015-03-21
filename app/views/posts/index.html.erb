@@ -1,0 +1,6 @@
+<% @posts.each do |post| %>
+  <h1><%= post.title %></h1>
+  <h4>Posted by: <%= post.user.email %></h4>
+  <p><%= post.content %></p>
+  <hr>
+<% end %>
