@@ -1,0 +1,7 @@
+<h1>In response to <em><%= @post.title %></em></h1>
+<p>Posted by: <%= @reply.user.email %></p>
+<p>on <%= @reply.updated_at %></p>
+<hr>
+<p><%= @reply.content %></p>
+<hr>
+<p><%= link_to "Go to Post", post_path(@reply.post_id) %></p>

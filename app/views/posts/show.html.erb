@@ -1,8 +1,32 @@
 <h1><%= @post.title %></h1>
-<p>Posted by: <%= @post.user.email %></p>
-<p>on <%= @post.updated_at %></p>
-<hr>
+<p>Posted by: <strong><%= @post.user.email %></strong> on <%= @post.updated_at.strftime("%B %-d, %Y at %H:%M") %></p>
 <p><%= @post.content %></p>
 <hr>
 <h2>Replies</h2>
-<p><%= link_to "New Reply" %></p>
+<!-- <p><%#= link_to "New Reply", new_post_reply_path(@post) %></p> -->
+
+<% @post.replies.each do |reply| %>
+  <p><%= reply.content %></p>
+  <p>-- <%= reply.user.email %> on <%= reply.updated_at.strftime("%B %-d, %Y at %H:%M") %></p>
+  <br>
+<% end %>
+
+<h2>New Reply</h2>
+<%= form_for [@post, @reply], url: post_replies_path(@post) do |f| %>
+  <% if @reply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+      <ul>
+      <% @reply.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :content, size: "60x12" %>
+  </div>
+  <%= f.submit "Reply" %>
+<% end %>
