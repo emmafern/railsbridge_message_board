@@ -1,4 +1,8 @@
 <h1><%= @post.title %></h1>
+<p>Posted by: <%= @post.user.email %></p>
+<p>on <%= @post.updated_at %></p>
+<hr>
 <p><%= @post.content %></p>
 <hr>
-<h4>Posted by: <%= @post.user.email %></h4>
+<h2>Replies</h2>
+<p><%= link_to "New Reply" %></p>
