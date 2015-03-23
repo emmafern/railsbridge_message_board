@@ -3,15 +3,13 @@
 <p><%= @post.content %></p>
 <hr>
 <h2>Replies</h2>
-<!-- <p><%#= link_to "New Reply", new_post_reply_path(@post) %></p> -->
-
 <% @post.replies.each do |reply| %>
   <p><%= reply.content %></p>
   <p>-- <%= reply.user.email %> on <%= reply.updated_at.strftime("%B %-d, %Y at %H:%M") %></p>
   <br>
 <% end %>
 
-<h2>New Reply</h2>
+<h3>New Reply</h3>
 <%= form_for [@post, @reply], url: post_replies_path(@post) do |f| %>
   <% if @reply.errors.any? %>
     <div id="error_explanation">
